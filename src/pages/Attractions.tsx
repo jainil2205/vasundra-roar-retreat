@@ -15,27 +15,27 @@ const Attractions = () => {
     },
     {
       id: 2,
+      title: "Bird Watching Safari",
+      description: "Discover exotic birds and enjoy photography opportunities with our expert ornithologist guides.",
+      image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369?w=600&h=400&fit=crop",
+      duration: "3-4 hours",
+      bestTime: "Early morning"
+    },
+    {
+      id: 3,
       title: "Wildlife Photography Tour",
-      description: "Capture stunning photographs of diverse wildlife with professional photography guides.",
-      image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=600&h=400&fit=crop",
+      description: "Capture stunning photographs of lions, birds and diverse wildlife with professional photography guides.",
+      image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=600&h=400&fit=crop",
       duration: "4-5 hours",
       bestTime: "Golden hour"
     },
     {
-      id: 3,
-      title: "Nature Walk",
-      description: "Explore the park's diverse ecosystems on foot with experienced naturalist guides.",
-      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=600&h=400&fit=crop",
-      duration: "1-2 hours",
-      bestTime: "Morning"
-    },
-    {
       id: 4,
-      title: "Bird Watching",
-      description: "Discover over 200 species of birds in our pristine natural environment.",
-      image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15?w=600&h=400&fit=crop",
+      title: "Nature Walk with Lions",
+      description: "Explore the park's diverse ecosystems and observe lions from safe viewing platforms with experienced guides.",
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=600&h=400&fit=crop",
       duration: "2-3 hours",
-      bestTime: "Early morning"
+      bestTime: "Morning & Evening"
     }
   ];
 

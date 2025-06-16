@@ -6,28 +6,28 @@ import { MapPin } from "lucide-react";
 const Nearby = () => {
   const nearbyAttractions = [
     {
-      name: "Ancient Temple Ruins",
-      distance: "5 km",
-      description: "Explore 12th-century temple ruins with intricate stone carvings",
+      name: "Lion Conservation Center",
+      distance: "4 km",
+      description: "Educational center dedicated to lion conservation efforts and wildlife protection programs",
       image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=400&h=300&fit=crop"
     },
     {
-      name: "Waterfall Trek",
-      distance: "8 km",
-      description: "Scenic hiking trail leading to a beautiful 50-meter waterfall",
-      image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=400&h=300&fit=crop"
+      name: "Avian Research Station",
+      distance: "6 km",
+      description: "Bird research facility where you can learn about local bird species and conservation efforts",
+      image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369?w=400&h=300&fit=crop"
     },
     {
-      name: "Local Village Market",
+      name: "Wildlife Sanctuary Trail",
       distance: "3 km",
-      description: "Experience local culture and buy handmade crafts and organic produce",
-      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=300&fit=crop"
+      description: "Extended walking trail through protected wildlife areas with frequent lion and bird sightings",
+      image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=400&h=300&fit=crop"
     },
     {
-      name: "Adventure Sports Center",
-      distance: "12 km",
-      description: "Rock climbing, zip-lining, and river rafting activities",
-      image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15?w=400&h=300&fit=crop"
+      name: "Nature Photography Workshop",
+      distance: "8 km",
+      description: "Professional wildlife photography workshops focusing on capturing lions and exotic birds",
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=300&fit=crop"
     }
   ];
 
@@ -39,7 +39,7 @@ const Nearby = () => {
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold mb-4 text-green-800">Nearby Attractions</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Extend your adventure beyond the park with these exciting nearby destinations
+              Extend your wildlife adventure beyond the park with these exciting nearby destinations
             </p>
           </div>
 
