@@ -22,7 +22,6 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold text-center mb-8 text-green-800">About Vasundra Nature Park</h1>
-
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
               <div>
                 <img
