@@ -1,10 +1,10 @@
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -30,7 +30,11 @@ export const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
+                className={`transition-colors duration-200 font-medium ${
+                  location.pathname === link.path
+                    ? "text-green-600 font-semibold"
+                    : "text-gray-700 hover:text-green-600"
+                }`}
               >
                 {link.name}
               </Link>
@@ -53,7 +57,11 @@ export const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="block py-2 text-gray-700 hover:text-green-600 transition-colors duration-200"
+                className={`block py-2 transition-colors duration-200 ${
+                  location.pathname === link.path
+                    ? "text-green-600 font-semibold"
+                    : "text-gray-700 hover:text-green-600"
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

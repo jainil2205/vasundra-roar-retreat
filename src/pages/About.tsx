@@ -24,10 +24,10 @@ const About = () => {
             <h1 className="text-5xl font-bold text-center mb-8 text-green-800">About Vasundra Nature Park</h1>
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
               <div>
-                <img
-                  src="../../public/assets/Main/2.JPG"
-                  alt="Lion in Vasundra Nature Park"
-                  className="rounded-lg shadow-lg w-full h-auto object-cover"
+                <img 
+                  src={lion1} 
+                  alt="Majestic lion at Vasundra Nature Park" 
+                  className="rounded-lg shadow-xl w-full h-auto object-cover"
                 />
               </div>
               <div>

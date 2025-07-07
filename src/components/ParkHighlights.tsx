@@ -17,13 +17,7 @@ export const ParkHighlights = () => {
       stats: "20+ Lions",
       color: "from-amber-50 to-amber-100"
     },
-    {
-      icon: <MapPin className="w-10 h-10 md:w-12 md:h-12 text-green-600" />,
-      title: "2000 Acres",
-      description: "Explore vast wilderness areas with diverse ecosystems and wildlife conservation efforts.",
-      stats: "5+ Ecosystems",
-      color: "from-emerald-50 to-emerald-100"
-    },
+  
     {
       icon: <Star className="w-10 h-10 md:w-12 md:h-12 text-green-600" />,
       title: "Premium Stay",
@@ -31,20 +25,7 @@ export const ParkHighlights = () => {
       stats: "4.9 Rating",
       color: "from-sky-50 to-sky-100"
     },
-    {
-      icon: <Users className="w-10 h-10 md:w-12 md:h-12 text-green-600" />,
-      title: "Expert Guides",
-      description: "Our knowledgeable guides provide educational and exciting tours tailored to your interests.",
-      stats: "10+ Years Experience",
-      color: "from-violet-50 to-violet-100"
-    },
-    {
-      icon: <Leaf className="w-10 h-10 md:w-12 md:h-12 text-green-600" />,
-      title: "Sustainability",
-      description: "We're committed to eco-friendly practices that protect and preserve our natural environment.",
-      stats: "Carbon Neutral",
-      color: "from-green-50 to-green-100"
-    },
+
     {
       icon: <Shield className="w-10 h-10 md:w-12 md:h-12 text-green-600" />,
       title: "Conservation",

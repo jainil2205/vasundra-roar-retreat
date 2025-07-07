@@ -219,41 +219,11 @@ export const QuickBooking = () => {
                 </div>
               </div>
               
-              <p className="mt-4 text-xs text-center sm:text-left text-gray-500">
-                By clicking "Check Availability", you'll send a request to our booking team
-              </p>
+          
             </div>
           </div>
           
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                icon: <Calendar className="w-5 h-5" />,
-                title: "Flexible Booking",
-                desc: "Free cancellation up to 48 hours before check-in"
-              },
-              {
-                icon: <MapPin className="w-5 h-5" />,
-                title: "Prime Location",
-                desc: "Immersed in nature with easy access to all attractions"
-              },
-              {
-                icon: <Users className="w-5 h-5" />,
-                title: "Personalized Service",
-                desc: "Our staff ensures your stay is perfect from start to finish"
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-start p-4 bg-white border border-green-100 rounded-xl shadow-sm">
-                <div className="mr-4 bg-green-50 p-2 rounded-full text-green-600">
-                  {item.icon}
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-800">{item.title}</h4>
-                  <p className="text-xs text-gray-500 mt-1">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+    
         </motion.div>
       </div>
     </section>

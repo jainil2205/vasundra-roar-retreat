@@ -4,11 +4,11 @@ import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { MapPin, Phone, Mail, Clock, Copy, Check, ExternalLink, Facebook, Instagram, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const Contact = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
+  // Store phone number but don't display it directly
   const phoneNumber = "+91 98765 43210";
 
   useEffect(() => {
@@ -78,6 +78,7 @@ const Contact = () => {
                     </div>
                   </div>
                   
+                  {/* Phone section - Modified to hide the actual number */}
                   <div className="flex items-start space-x-4 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 group">
                     <div className="bg-green-100 p-2 rounded-full">
                       <Phone className="w-6 h-6 text-green-600" />
@@ -85,12 +86,13 @@ const Contact = () => {
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
                       <div className="flex items-center justify-between">
-                        <a 
-                          href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-                          className="text-green-600 font-medium group-hover:text-green-700 transition-colors"
+                        <button 
+                          onClick={handlePhoneCopy}
+                          className="text-green-600 font-medium hover:text-green-700 transition-colors flex items-center cursor-pointer"
+                          aria-label="Copy phone number"
                         >
-                          {phoneNumber}
-                        </a>
+                          <span>Click to copy our phone number</span>
+                        </button>
                         <button 
                           onClick={handlePhoneCopy}
                           className="text-gray-400 hover:text-green-600 focus:outline-none transition-colors p-1"
@@ -151,20 +153,22 @@ const Contact = () => {
                     For immediate assistance with bookings, call us directly or use our online booking system.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <a
-                      href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+                    {/* Call Now button - Modified to use handlePhoneCopy instead of direct link */}
+                    <button
+                      onClick={handlePhoneCopy}
                       className="bg-white text-green-700 px-5 py-2.5 rounded-lg hover:bg-green-50 transition-colors font-medium flex items-center shadow-md"
+                      aria-label="Copy phone number to clipboard"
                     >
                       <Phone className="w-4 h-4 mr-2" />
                       Call Now
-                    </a>
+                    </button>
                     <a 
-  href="mailto:info@vasundranaturepark.com?subject=Booking%20Inquiry%20for%20Vasundra%20Nature%20Park"
-  className="bg-green-500 hover:bg-green-400 text-white px-5 py-2.5 rounded-lg transition-colors font-medium flex items-center shadow-md"
->
-  <ExternalLink className="w-4 h-4 mr-2" />
-  Book Via Email
-</a>  
+                      href="mailto:info@vasundranaturepark.com?subject=Booking%20Inquiry%20for%20Vasundra%20Nature%20Park"
+                      className="bg-green-500 hover:bg-green-400 text-white px-5 py-2.5 rounded-lg transition-colors font-medium flex items-center shadow-md"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Book Via Email
+                    </a>  
                   </div>
                 </motion.div>
 
@@ -329,14 +333,14 @@ const Contact = () => {
 
       <Footer />
       
-      {/* Floating Call Button (Mobile Only) */}
-      <a
-        href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+      {/* Floating Call Button (Mobile Only) - Modified to use copy functionality */}
+      <button
+        onClick={handlePhoneCopy}
         className="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg md:hidden z-50 hover:bg-green-700 transition-colors"
-        aria-label="Call us"
+        aria-label="Copy phone number"
       >
         <Phone className="w-6 h-6" />
-      </a>
+      </button>
     </div>
   );
 };
