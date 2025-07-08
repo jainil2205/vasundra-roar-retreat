@@ -21,7 +21,7 @@ export const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="text-2xl font-bold text-green-800">
-            Vasundra Nature Park
+            Vasundhara Nature Park
           </Link>
 
           {/* Desktop Navigation */}

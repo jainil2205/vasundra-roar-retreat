@@ -237,7 +237,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Vasundra Nature Park location"
+                    title="Vasundhara Nature Park location"
                   ></iframe>
                 </div>
               </div>

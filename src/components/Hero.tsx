@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { useState, useEffect, useRef } from "react";
 import { 
@@ -35,24 +35,62 @@ import hanumangala from "../../public/assets/Nearby Attractions/2.jpg";
 // Importing about page images
 import lion5 from "../../public/assets/Lions in natural habitat/5.jpg";
 
-export const Hero = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const slideTimerRef = useRef(null);
+// Define interfaces
+interface Room {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  capacity: number;
+  images: string[];
+  amenities: string[];
+}
+
+interface Attraction {
+  id: number;
+  title: string;
+  description: string;
+  image: string | { src: string };
+  duration: string;
+  bestTime: string;
+}
+
+interface NearbyAttraction {
+  name: string;
+  distance: string;
+  description: string;
+  image: string | { src: string };
+}
+
+interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
+export const Hero: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const slideTimerRef = useRef<NodeJS.Timeout | null>(null);
   
-  const roomsRef = useRef(null);
-  const attractionsRef = useRef(null);
-  const aboutRef = useRef(null);
-  const nearbyRef = useRef(null);
-  const reviewsRef = useRef(null);
-  const contactRef = useRef(null);
-  const securityRef = useRef(null);
+  const roomsRef = useRef<HTMLElement | null>(null);
+  const attractionsRef = useRef<HTMLElement | null>(null);
+  const aboutRef = useRef<HTMLElement | null>(null);
+  const nearbyRef = useRef<HTMLElement | null>(null);
+  const reviewsRef = useRef<HTMLElement | null>(null);
+  const contactRef = useRef<HTMLElement | null>(null);
+  const securityRef = useRef<HTMLElement | null>(null);
+  
+  // Get current location for scroll to top functionality
+  const location = useLocation();
   
   // Sample room data
-  const rooms = [
+  const rooms: Room[] = [
     {
       id: 1,
       name: "Luxury Safari Suite",
@@ -94,7 +132,7 @@ export const Hero = () => {
   ];
 
   // Featured attractions for the home page
-  const featuredAttractions = [
+  const featuredAttractions: Attraction[] = [
     {
       id: 1,
       title: "Lion Safari",
@@ -114,7 +152,7 @@ export const Hero = () => {
   ];
   
   // Featured nearby attractions for the home page
-  const featuredNearbyAttractions = [
+  const featuredNearbyAttractions: NearbyAttraction[] = [
     {
       name: "Sunset View Point",
       distance: "2 km",
@@ -130,7 +168,7 @@ export const Hero = () => {
   ];
   
   // Featured reviews for the home page
-  const featuredReviews = [
+  const featuredReviews: Review[] = [
     {
       id: 1,
       name: "Sarah Johnson",
@@ -155,7 +193,7 @@ export const Hero = () => {
   ];
 
   // Background images to include night views and food court images
-  const backgroundImages = [
+  const backgroundImages: string[] = [
     // Night view images
     "/assets/Original photos/10.jpg",
     "/assets/Original photos/11.jpg",
@@ -168,6 +206,11 @@ export const Hero = () => {
     "/assets/Original photos/5.JPG",
     "/assets/Original photos/8.JPG"
   ];
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   // Check for mobile viewport
   useEffect(() => {
@@ -186,12 +229,12 @@ export const Hero = () => {
   // Auto-slide functionality with reset on manual navigation
   useEffect(() => {
     if (isAutoPlaying) {
-      clearTimeout(slideTimerRef.current);
+      clearTimeout(slideTimerRef.current as NodeJS.Timeout);
       slideTimerRef.current = setTimeout(() => {
         setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
       }, 5000);
     }
-    return () => clearTimeout(slideTimerRef.current);
+    return () => { if (slideTimerRef.current) clearTimeout(slideTimerRef.current); };
   }, [isAutoPlaying, currentImageIndex, backgroundImages.length]);
 
   const nextImage = () => {
@@ -210,13 +253,13 @@ export const Hero = () => {
     roomsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleRoomSelect = (room) => {
+  const handleRoomSelect = (room: Room) => {
     setSelectedRoom(room);
     setIsModalOpen(true);
   };
 
   // Attraction Card Component for the home page
-  const AttractionPreviewCard = ({ attraction }) => (
+  const AttractionPreviewCard: React.FC<{ attraction: Attraction }> = ({ attraction }) => (
     <motion.div 
       className="group bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out"
       whileHover={{ y: -5 }}
@@ -230,7 +273,8 @@ export const Hero = () => {
           <img 
             className="h-56 w-full object-cover md:w-56" 
             src={typeof attraction.image === "string" ? attraction.image : attraction.image.src} 
-            alt={attraction.title} 
+            alt={attraction.title}
+            loading="lazy"
           />
         </div>
         <div className="p-6 flex flex-col justify-between">
@@ -254,7 +298,7 @@ export const Hero = () => {
   );
   
   // Nearby Attraction Card Component for the home page
-  const NearbyPreviewCard = ({ attraction }) => (
+  const NearbyPreviewCard: React.FC<{ attraction: NearbyAttraction }> = ({ attraction }) => (
     <motion.div 
       className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
       whileHover={{ y: -5 }}
@@ -268,6 +312,7 @@ export const Hero = () => {
           src={typeof attraction.image === "string" ? attraction.image : attraction.image.src}
           alt={attraction.name}
           className="object-cover w-full h-48"
+          loading="lazy"
         />
       </div>
       <div className="p-5">
@@ -284,7 +329,7 @@ export const Hero = () => {
   );
   
   // Review Card Component for the home page
-  const ReviewCard = ({ review }) => (
+  const ReviewCard: React.FC<{ review: Review }> = ({ review }) => (
     <motion.div
       className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
       whileHover={{ y: -5 }}
@@ -443,7 +488,7 @@ export const Hero = () => {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 drop-shadow-lg">
-                Vasundra Nature Park
+                Vasundhara Nature Park
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 drop-shadow-md max-w-3xl mx-auto">
                 Where Wildlife Meets Wonder - Experience the Majesty of Lions in Their Natural Habitat
@@ -575,7 +620,7 @@ export const Hero = () => {
           >
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center text-green-800">
               <Info className="inline-block mr-2 mb-1" />
-              About Vasundra Nature Park
+              About Vasundhara Nature Park
             </h2>
             <p className="text-lg text-center mb-10 max-w-3xl mx-auto text-gray-600">
               A premier wildlife sanctuary dedicated to lion conservation and providing unforgettable nature experiences
@@ -591,8 +636,9 @@ export const Hero = () => {
               >
                 <img 
                   src={lion5} 
-                  alt="Lions at Vasundra Nature Park" 
+                  alt="Lions at Vasundhara Nature Park" 
                   className="w-full h-80 object-cover"
+                  loading="lazy"
                 />
               </motion.div>
               <motion.div
@@ -603,7 +649,7 @@ export const Hero = () => {
               >
                 <h3 className="text-2xl font-semibold mb-4 text-green-700">Our Story</h3>
                 <p className="text-gray-700 mb-6">
-                  Established in 1985, Vasundra Nature Park spans over 2,000 acres of pristine wilderness and is 
+                  Established in 1985, Vasundhara Nature Park spans over 2,000 acres of pristine wilderness and is 
                   home to majestic lions, exotic birds, and diverse wildlife.
                 </p>
                 
@@ -684,7 +730,7 @@ export const Hero = () => {
         </div>
       </section>
       
-      {/* Reviews Section - NEW */}
+      {/* Reviews Section */}
       <section 
         ref={reviewsRef} 
         className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white"
@@ -701,7 +747,7 @@ export const Hero = () => {
               Guest Reviews
             </h2>
             <p className="text-lg text-center mb-12 max-w-3xl mx-auto text-gray-600">
-              See what our visitors have to say about their unforgettable experiences at Vasundra Nature Park
+              See what our visitors have to say about their unforgettable experiences at Vasundhara Nature Park
             </p>
             
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -727,7 +773,7 @@ export const Hero = () => {
         </div>
       </section>
       
-      {/* Contact Section - NEW */}
+      {/* Contact Section with Google Maps */}
       <section 
         ref={contactRef} 
         className="py-20 px-4 bg-gradient-to-b from-green-800 to-green-900 text-white"
@@ -786,24 +832,38 @@ export const Hero = () => {
               >
                 <MapPin size={36} className="mb-4 text-amber-400" />
                 <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
-                <p className="text-white/80">Vasundra Nature Park</p>
+                <p className="text-white/80">Vasundhara Nature Park</p>
                 <p className="text-white/80">Girnar Road, Junagadh, Gujarat</p>
               </motion.div>
             </div>
 
-            {/* Contact Us button */}
-            <div className="flex justify-center">
-              <Link to="/contact">
-                <motion.button
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full text-lg font-medium transition-all flex items-center shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Contact Us
-                  <ExternalLink className="ml-2 w-5 h-5" />
-                </motion.button>
-              </Link>
-            </div>
+            {/* Google Maps and Contact Button */}
+<div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+  <div className="w-full h-64 rounded-xl overflow-hidden shadow-lg">
+    <iframe
+      title="Vasundhara Nature Park Location"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14858.820432110755!2d71.02483379793442!3d21.40151296895877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be285306501efe3%3A0xbebdc717188c78e2!2sVasundhara%20Nature%20Park!5e0!3m2!1sen!2sus!4v1751911598588!5m2!1sen!2sus"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen={true}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    />
+  </div>
+  <div className="flex flex-col justify-center">
+    <Link to="/contact">
+      <motion.button
+        className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full text-lg font-medium transition-all flex items-center shadow-lg mx-auto"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Contact Us
+        <ExternalLink className="ml-2 w-5 h-5" />
+      </motion.button>
+    </Link>
+  </div>
+</div>
           </motion.div>
         </div>
       </section>

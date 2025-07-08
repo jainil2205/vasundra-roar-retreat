@@ -21,19 +21,19 @@ const About = () => {
       <div className="pt-20 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl font-bold text-center mb-8 text-green-800">About Vasundra Nature Park</h1>
+            <h1 className="text-5xl font-bold text-center mb-8 text-green-800">About Vasundhara Nature Park</h1>
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
               <div>
                 <img 
                   src={lion1} 
-                  alt="Majestic lion at Vasundra Nature Park" 
+                  alt="Majestic lion at Vasundhara Nature Park" 
                   className="rounded-lg shadow-xl w-full h-auto object-cover"
                 />
               </div>
               <div>
                 <h2 className="text-3xl font-semibold mb-6 text-green-700">Our Story</h2>
                 <p className="text-lg text-gray-700 mb-4">
-                  Vasundra Nature Park is a premier wildlife sanctuary spanning over 2,000 acres of pristine wilderness.
+                  Vasundhara Nature Park is a premier wildlife sanctuary spanning over 2,000 acres of pristine wilderness.
                   Established in 1985, our park has been dedicated to lion conservation and providing visitors with
                   unforgettable experiences in their natural habitat.
                 </p>

@@ -11,7 +11,7 @@ export const Footer = () => {
           
           {/* About Section */}
           <div className="flex flex-col items-center sm:items-start">
-            <h3 className="text-2xl font-bold mb-4">Vasundra Nature Park</h3>
+            <h3 className="text-2xl font-bold mb-4">Vasundhara Nature Park</h3>
             <p className="text-green-200 mb-4 max-w-xs">
               Experience the wild beauty of nature and create unforgettable memories in our pristine wilderness sanctuary.
             </p>
@@ -62,7 +62,7 @@ export const Footer = () => {
         {/* Bottom Bar with Social Links and Copyright */}
         <div className="border-t border-green-700 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-green-300 text-center md:text-left mb-4 md:mb-0">
-            © {new Date().getFullYear()} Vasundra Nature Park. All Rights Reserved.
+            © {new Date().getFullYear()} Vasundhara Nature Park. All Rights Reserved.
           </p>
           <div className="flex space-x-4">
             <a href="#" aria-label="Facebook" className="text-green-300 hover:text-white transition-transform duration-300 hover:scale-110">
